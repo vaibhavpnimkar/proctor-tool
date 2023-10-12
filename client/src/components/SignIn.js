@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import CustomWebcam from './CustomWebcam';
+
+
 
 export default function SignIn() {
 
@@ -78,7 +81,7 @@ onChange={(e)=>setpassword(e.target.value)}
                   />
                 </div>
               </div>
-  
+              <CustomWebcam/>
               <div>
                 <button
                   type="submit"
