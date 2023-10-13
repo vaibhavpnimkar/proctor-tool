@@ -7,6 +7,14 @@ export default function SignIn() {
 
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
+  const [capturedPhoto, setCapturedPhoto] = useState(null);
+
+  const handleCapture = (imgSrc) => {
+    setCapturedPhoto(imgSrc);
+    console.log('Captured Image:', imgSrc);
+  
+  };
+
    
   async function registerUser(event) {
     event.preventDefault();
@@ -81,7 +89,10 @@ onChange={(e)=>setpassword(e.target.value)}
                   />
                 </div>
               </div>
-              <CustomWebcam/>
+            
+              <CustomWebcam onCapture={handleCapture}/>
+            
+    
               <div>
                 <button
                   type="submit"

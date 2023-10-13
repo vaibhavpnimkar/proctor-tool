@@ -1,7 +1,7 @@
 import React, { useRef, useState, useCallback } from 'react';
 import Webcam from 'react-webcam';
 
-const CustomWebcam = () => {
+const CustomWebcam = ({onCapture}) => {
   const webcamRef = useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
 
@@ -11,7 +11,7 @@ const CustomWebcam = () => {
           const imageSrc = webcamRef.current.getScreenshot();
           if (imageSrc) {
             setImgSrc(imageSrc);
-            console.log('Captured Image:', imageSrc);
+            
           } else {
             console.log('No image data captured.');
           }
@@ -22,20 +22,26 @@ const CustomWebcam = () => {
         console.log('Webcam reference not available.');
       }
     
-    console.log('Captured Image:', imgSrc);
-  }, [webcamRef]);
+  
+  }, [webcamRef,onCapture]);
 
   return (
     <div className="container">
-      {imgSrc ? (
-        <img src={imgSrc} alt="webcam" />
-      ) : (
-        <Webcam height={600} width={600} ref={webcamRef} />
-      )}
-      <div className="btn-container">
-        <button onClick={capture}>Capture photo</button>
-      </div>
+    {imgSrc ? (
+      <img src={imgSrc} alt="webcam" />
+    ) : (
+      <Webcam height={200} width={600} ref={webcamRef} />
+    )}
+    <div className="btn-container flex justify-between">
+      <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={capture}>
+        Capture photo
+      </button>
+      <button className="bg-green-500 text-white px-4 py-2 rounded">
+        Upload photo
+      </button>
     </div>
+  </div>
+  
   );
 };
 
