@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CustomWebcam from './CustomWebcam';
+import { useImgSrc } from '../contexts/ImageContext';
 
 
 
@@ -7,9 +8,11 @@ export default function SignIn() {
 
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
+  const { imgSrc } = useImgSrc();
+
   const [capturedPhoto, setCapturedPhoto] = useState(null);
 
-  const handleCapture = (imgSrc) => {
+  const handleCapture = () => {
     setCapturedPhoto(imgSrc);
     console.log('Captured Image:', imgSrc);
   

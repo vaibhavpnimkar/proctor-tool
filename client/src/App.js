@@ -1,17 +1,20 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LogIn from './components/LogIn';
 import SignIn from './components/SignIn';
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import CustomWebcam from './components/CustomWebcam';
+import { ImgSrcProvider } from './contexts/ImageContext';
+
 function App() {
   return (
-   <BrowserRouter>
-   <Routes>
-   <Route path='/login' Component={LogIn}/>
-   <Route path='/register' Component={SignIn}/>
-   </Routes>
-   </BrowserRouter>
-     
- 
+    <BrowserRouter>
+      <ImgSrcProvider> 
+        <Routes>
+          <Route path='/login' element={<LogIn />} />
+          <Route path='/register' element={<SignIn />} />
+        </Routes>
+      </ImgSrcProvider>
+    </BrowserRouter>
   );
 }
 
